@@ -9,6 +9,10 @@ Book.prototype.info = function () {
   return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.isRead}`;
 }
 
+Book.prototype.toggleRead = function () {
+  this.isRead = this.isRead == 'Yes' ? 'No' : 'Yes';
+}
+
 function addBookToLibrary() {
   const title = prompt("Title: ");
   const author = prompt("Author: ");
@@ -30,8 +34,15 @@ function renderBook(book, idx) {
   removeButton.textContent = "Remove this book from lib";
   removeButton.addEventListener("click", (e) => {
     removeBookFromLibrary(book, idx);
+  });
+  const toggleReadButton = document.createElement('button');
+  toggleReadButton.textContent = 'Mark as read / unread';
+  toggleReadButton.addEventListener("click", (e) => {
+    book.toggleRead();
+    render();
   })
   bookContainer.appendChild(removeButton);
+  bookContainer.appendChild(toggleReadButton);
   libContainer.appendChild(bookContainer);
 }
 
