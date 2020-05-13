@@ -25,7 +25,7 @@ function renderBook(book, idx) {
   const removeButton = document.createElement('button');
   removeButton.textContent = "remove";
   removeButton.addEventListener("click", (e) => {
-    removeBookFromLibrary(idx);
+    removeBookFromLibrary(book, idx);
   });
 
   const titleData = document.createElement('td');
@@ -45,23 +45,36 @@ function renderBook(book, idx) {
 }
 
 function render() {
+  clearTable();
   for (let i = 0; i < myLibrary.length; i++) {
     renderBook(myLibrary[i], i);
   }
 }
+
+function clearTable() {
+  let tableRows = document.querySelector('#lib-container').getElementsByTagName('tr');
+  tableRows = Array.from(tableRows).slice(1);
+  for (let item of tableRows) {
+    item.textContent = "";
+  }
+}
+
 
 document.getElementById("add-book-button").addEventListener('click', (e) => {
   addBookToLibrary();
   render();
 });
 
-function removeBookFromLibrary(idx) {
+function removeBookFromLibrary(book, idx) {
+  console.log('Inside delete');
+  let i = myLibrary.indexOf(book);
+  console.log('Index: ' + idx);
   tableRow = document.querySelector(`tr[data-value="${idx}"]`);
   if (tableRow) {
     console.log('to delete');
     let table = document.querySelector('#lib-container');
     table.removeChild(tableRow);
-    myLibrary.splice(idx, 1);
+    myLibrary.splice(i, 1);
   }
 }
 
