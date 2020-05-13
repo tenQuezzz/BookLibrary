@@ -1,0 +1,15 @@
+main {
+  width: 80vw;
+  height: 70vh;
+  margin: 2% auto;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+nav {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  text-align: center;
+  width: 80vw;
+  margin: 0 auto;
+}
