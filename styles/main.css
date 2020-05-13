@@ -13,3 +13,7 @@ nav {
   width: 80vw;
   margin: 0 auto;
 }
+
+#lib-container {
+  list-style-type: none;
+}

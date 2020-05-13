@@ -18,9 +18,22 @@ function addBookToLibrary() {
   myLibrary.push(new Book(author, title, pages, isRead));
 }
 
+function renderBook(book) {
+  bookItem = document.createElement("li");
+  bookItem.textContent = book.info();
+  libContainer.appendChild(bookItem);
+}
 
+function render() {
+  for (const book of myLibrary) {
+    renderBook(book);
+  }
+}
 
 let myLibrary = [];
 const libContainer = document.querySelector('#lib-container');
-// addBookToLibrary();
+myLibrary.push(new Book('test1', 'test1', 200, true));
+myLibrary.push(new Book('test2', 'test2', 300, true));
+myLibrary.push(new Book('test2', 'test2', 400, false));
+render();
 // console.table(myLibrary);
