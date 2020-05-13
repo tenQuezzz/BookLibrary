@@ -19,9 +19,20 @@ function addBookToLibrary() {
 }
 
 function renderBook(book) {
-  bookItem = document.createElement("li");
-  bookItem.textContent = book.info();
-  libContainer.appendChild(bookItem);
+  const tableRow = document.createElement('tr');
+  const titleData = document.createElement('td');
+  const authorData = document.createElement('td');
+  const pagesData = document.createElement('td');
+  const readData = document.createElement('td');
+  titleData.textContent = book.title;
+  authorData.textContent = book.author;
+  pagesData.textContent = book.numPages;
+  readData.textContent = book.isRead ? "read!" : 'not read yet!';
+  tableRow.appendChild(titleData);
+  tableRow.appendChild(authorData);
+  tableRow.appendChild(pagesData);
+  tableRow.appendChild(readData);
+  libContainer.appendChild(tableRow);
 }
 
 function render() {
@@ -32,8 +43,8 @@ function render() {
 
 let myLibrary = [];
 const libContainer = document.querySelector('#lib-container');
-myLibrary.push(new Book('test1', 'test1', 200, true));
-myLibrary.push(new Book('test2', 'test2', 300, true));
-myLibrary.push(new Book('test2', 'test2', 400, false));
+myLibrary.push(new Book('Haruki Murakami', 'Norwegian Wood', 500, true));
+myLibrary.push(new Book('J.K Rowling', 'Harry Potter', 600, true));
+myLibrary.push(new Book('Hendrik Dorgathen', 'Space dog', 50, false));
 render();
 // console.table(myLibrary);
