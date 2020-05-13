@@ -21,10 +21,36 @@ table {
   border: 1px solid black;
 }
 
+footer {
+  width: 80vw;
+  margin: 10px auto;
+  text-align: center;
+}
+
+footer button {
+  width: 100%;
+  font-weight: bold;
+  font-size: 1.5em;
+  border-radius: 10px;
+}
+
+footer button:hover {
+  cursor: pointer;
+  background-color: azure;
+}
+
+footer button:active {
+  outline: none;
+}
+
 table, th, td {
   border-top: 1px solid black;
   padding: 10px;
   border-collapse: collapse;
+}
+
+tr:hover {
+  background-color: azure;
 }
 
 #lib-container {

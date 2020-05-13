@@ -18,8 +18,16 @@ function addBookToLibrary() {
   myLibrary.push(new Book(author, title, pages, isRead));
 }
 
-function renderBook(book) {
+function renderBook(book, idx) {
   const tableRow = document.createElement('tr');
+  tableRow.setAttribute('data-value', `${idx}`);
+
+  const removeButton = document.createElement('button');
+  removeButton.textContent = "remove";
+  removeButton.addEventListener("click", (e) => {
+    removeBookFromLibrary(idx);
+  });
+
   const titleData = document.createElement('td');
   const authorData = document.createElement('td');
   const pagesData = document.createElement('td');
@@ -32,12 +40,28 @@ function renderBook(book) {
   tableRow.appendChild(authorData);
   tableRow.appendChild(pagesData);
   tableRow.appendChild(readData);
+  tableRow.appendChild(removeButton);
   libContainer.appendChild(tableRow);
 }
 
 function render() {
-  for (const book of myLibrary) {
-    renderBook(book);
+  for (let i = 0; i < myLibrary.length; i++) {
+    renderBook(myLibrary[i], i);
+  }
+}
+
+document.getElementById("add-book-button").addEventListener('click', (e) => {
+  addBookToLibrary();
+  render();
+});
+
+function removeBookFromLibrary(idx) {
+  tableRow = document.querySelector(`tr[data-value="${idx}"]`);
+  if (tableRow) {
+    console.log('to delete');
+    let table = document.querySelector('#lib-container');
+    table.removeChild(tableRow);
+    myLibrary.splice(idx, 1);
   }
 }
 
