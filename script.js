@@ -17,7 +17,7 @@ function addBookToLibrary() {
   const title = prompt("Title: ");
   const author = prompt("Author: ");
   const pages = Number(prompt("Pages: "));
-  const isRead = prompt("Have your read this book? Yes/No: ");
+  const isRead = prompt("Have you read this book? Yes/No: ");
   myLibrary.push(new Book(author, title, pages, isRead));
 }
 
@@ -31,12 +31,12 @@ function render() {
 function renderBook(book, idx) {
   bookContainer = genBookContainer(book, idx);
   const removeButton = document.createElement('button');
-  removeButton.textContent = "Remove this book from lib";
+  removeButton.textContent = "Remove";
   removeButton.addEventListener("click", (e) => {
     removeBookFromLibrary(book, idx);
   });
   const toggleReadButton = document.createElement('button');
-  toggleReadButton.textContent = 'Mark as read / unread';
+  toggleReadButton.textContent = 'Toggle read status';
   toggleReadButton.addEventListener("click", (e) => {
     book.toggleRead();
     render();
@@ -91,7 +91,7 @@ function removeBookFromLibrary(book, idx) {
 
 let myLibrary = [];
 const libContainer = document.querySelector('#lib-container');
-myLibrary.push(new Book('Haruki Murakami', 'Norwegian Wood', 500, 'Yes'));
-myLibrary.push(new Book('J.K Rowling', 'Harry Potter', 600, 'No'));
-myLibrary.push(new Book('Hendrik Dorgathen', 'Space dog', 50, 'Yes'));
+myLibrary.push(new Book('Test Author #1', 'Test title #1', 500, 'Yes'));
+myLibrary.push(new Book('Test Author #2', 'Test title #2', 600, 'No'));
+myLibrary.push(new Book('Test Author #3', 'Test title #3', 50, 'Yes'));
 render();
