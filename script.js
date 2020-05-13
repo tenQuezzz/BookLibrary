@@ -17,23 +17,27 @@ function addBookToLibrary() {
   myLibrary.push(new Book(author, title, pages, isRead));
 }
 
-function renderBook(book, idx) {
-  bookContainer = genBookContainer(book);
-  libContainer.appendChild(bookContainer);
-  // const tableRow = generateTableRowForBook(book);
-  // tableRow.setAttribute('data-value', `${idx}`);
-
-  // const removeButton = document.createElement('button');
-  // removeButton.textContent = "remove";
-  // removeButton.addEventListener("click", (e) => {
-  //   removeBookFromLibrary(book, idx);
-  // });
-  // tableRow.appendChild(removeButton);
-  // libContainer.appendChild(tableRow);
+function render() {
+  clearTable();
+  for (let i = 0; i < myLibrary.length; i++) {
+    renderBook(myLibrary[i], i);
+  }
 }
 
-function genBookContainer(book) {
+function renderBook(book, idx) {
+  bookContainer = genBookContainer(book, idx);
+  const removeButton = document.createElement('button');
+  removeButton.textContent = "Remove this book from lib";
+  removeButton.addEventListener("click", (e) => {
+    removeBookFromLibrary(book, idx);
+  })
+  bookContainer.appendChild(removeButton);
+  libContainer.appendChild(bookContainer);
+}
+
+function genBookContainer(book, idx) {
   li = document.createElement('li');
+  li.setAttribute('data-value', `${idx}`);
   li.setAttribute('class', 'book-item');
 
   titleElem = document.createElement('p');
@@ -54,12 +58,6 @@ function genBookContainer(book) {
   return li;
 }
 
-function render() {
-  clearTable();
-  for (let i = 0; i < myLibrary.length; i++) {
-    renderBook(myLibrary[i], i);
-  }
-}
 
 function clearTable() {
   let table = document.querySelector('#lib-container');
@@ -72,7 +70,7 @@ document.getElementById("add-book-button").addEventListener('click', (e) => {
 });
 
 function removeBookFromLibrary(book, idx) {
-  tableRow = document.querySelector(`tr[data-value="${idx}"]`);
+  tableRow = document.querySelector(`li[data-value="${idx}"]`);
   if (tableRow) {
     let table = document.querySelector('#lib-container');
     table.removeChild(tableRow);
