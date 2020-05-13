@@ -18,26 +18,40 @@ function addBookToLibrary() {
 }
 
 function renderBook(book, idx) {
-  const tableRow = generateTableRowForBook(book);
-  tableRow.setAttribute('data-value', `${idx}`);
+  bookContainer = genBookContainer(book);
+  libContainer.appendChild(bookContainer);
+  // const tableRow = generateTableRowForBook(book);
+  // tableRow.setAttribute('data-value', `${idx}`);
 
-  const removeButton = document.createElement('button');
-  removeButton.textContent = "remove";
-  removeButton.addEventListener("click", (e) => {
-    removeBookFromLibrary(book, idx);
-  });
-  tableRow.appendChild(removeButton);
-  libContainer.appendChild(tableRow);
+  // const removeButton = document.createElement('button');
+  // removeButton.textContent = "remove";
+  // removeButton.addEventListener("click", (e) => {
+  //   removeBookFromLibrary(book, idx);
+  // });
+  // tableRow.appendChild(removeButton);
+  // libContainer.appendChild(tableRow);
 }
 
-function generateTableRowForBook(book) {
-  tr = document.createElement("tr");
-  for (let value of Object.values(book)) {
-    td = document.createElement('td');
-    td.textContent = value;
-    tr.appendChild(td);
-  }
-  return tr;
+function genBookContainer(book) {
+  li = document.createElement('li');
+  li.setAttribute('class', 'book-item');
+
+  titleElem = document.createElement('p');
+  titleElem.textContent = `Title: ${book.title}`;
+  li.appendChild(titleElem);
+
+  authorElem = document.createElement('p');
+  authorElem.textContent = `Author: ${book.author}`;
+  li.appendChild(authorElem);
+
+  pagesElem = document.createElement('p');
+  pagesElem.textContent = `Pages: ${book.numPages}`;
+  li.appendChild(pagesElem);
+
+  readElem = document.createElement('p');
+  readElem.textContent = `Have you read it: ${book.isRead}`;
+  li.appendChild(readElem);
+  return li;
 }
 
 function render() {
@@ -48,11 +62,8 @@ function render() {
 }
 
 function clearTable() {
-  let tableRows = document.querySelector('#lib-container').getElementsByTagName('tr');
-  tableRows = Array.from(tableRows).slice(1);
-  for (let item of tableRows) {
-    item.textContent = "";
-  }
+  let table = document.querySelector('#lib-container');
+  table.textContent = '';
 }
 
 document.getElementById("add-book-button").addEventListener('click', (e) => {

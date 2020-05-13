@@ -1,6 +1,5 @@
 main {
   width: 80vw;
-  height: 70vh;
   margin: 2% auto;
   border: 2px solid black;
   border-radius: 10px;
@@ -14,11 +13,21 @@ nav {
   margin: 0 auto;
 }
 
-
-table {
-  margin: 10px auto;
+#lib-container {
   width: 80%;
+  margin: 10px auto;
+  padding: 5px;
+  text-align: left;
+  list-style-type: none;
+}
+
+.book-item {
+  width: 70%;
+  margin: 10px auto;
+  padding: 20px;
   border: 1px solid black;
+  border-radius: 10px;
+  font-size: 1.5em;
 }
 
 footer {
@@ -41,18 +50,4 @@ footer button:hover {
 
 footer button:active {
   outline: none;
-}
-
-table, th, td {
-  border-top: 1px solid black;
-  padding: 10px;
-  border-collapse: collapse;
-}
-
-tr:hover {
-  background-color: azure;
-}
-
-#lib-container {
-  text-align: center;
 }
