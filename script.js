@@ -1,16 +1,18 @@
-function Book(author, title, numPages, isRead) {
-  this.author = author;
-  this.title = title;
-  this.numPages = numPages;
-  this.isRead = isRead;
-}
+class Book {
+  constructor(author, title, numPages, isRead) {
+    this.author = author;
+    this.title = title;
+    this.numPages = numPages;
+    this.isRead = isRead;
+  }
 
-Book.prototype.info = function () {
-  return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.isRead}`;
-}
+  info() {
+    return `${this.title} by ${this.author}, ${this.numPages} pages, ${this.isRead}`;
+  }
 
-Book.prototype.toggleRead = function () {
-  this.isRead = this.isRead == 'Yes' ? 'No' : 'Yes';
+  toggleRead() {
+    this.isRead = this.isRead == 'Yes' ? 'No' : 'Yes';
+  }
 }
 
 function addBookToLibrary() {
